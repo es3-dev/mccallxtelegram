@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Modelo de McCall aplicado a Telegram — Informe de calidad</title>
+<meta name="description" content="Evaluación de la calidad de la app Telegram usando el modelo de McCall: 11 factores, 3 categorías y una puntuación general justificada." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <span class="brand-mark">MQ</span>
+      <span class="brand-name">McCall × Telegram</span>
+    </a>
+    <nav class="main-nav" aria-label="Navegación principal">
+      <ul>
+        <li><a href="#metodologia">Metodología</a></li>
+        <li><a href="#operacion">Operación</a></li>
+        <li><a href="#revision">Revisión</a></li>
+        <li><a href="#transicion">Transición</a></li>
+        <li><a href="#resumen">Resumen</a></li>
+        <li><a href="#conclusiones">Conclusiones</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <!-- ============================== HERO ============================== -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="hero-eyebrow"><span class="dot"></span>Estudio de calidad de software</span>
+        <h1>¿Qué tan buena es Telegram según un modelo de calidad de 1977 que sigue vigente?</h1>
+        <p class="hero-lede">El modelo de McCall organiza la calidad de un software en <strong>11 factores</strong> agrupados en tres preguntas: si el producto <em>opera</em> como se espera, si se puede <em>revisar</em> sin romperlo, y si sobrevive la <em>transición</em> a otros entornos. Este informe aplica ese marco a Telegram como caso de estudio.</p>
+        <p class="hero-lede">La evaluación se basa en comportamiento observable de la app, documentación pública de su API y protocolo, y comparación frente al resto de apps de mensajería instantánea del mercado.</p>
+
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="num" id="factor-count">—</span>
+            <span class="lbl">factores evaluados</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="num" id="category-count">—</span>
+            <span class="lbl">categorías del modelo</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="num">2026</span>
+            <span class="lbl">corte de la evaluación</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-score">
+        <div class="hero-score-top">
+          <div class="hero-score-figure">
+            <span class="value" id="overall-score">—</span>
+            <span class="max">/ 10</span>
+          </div>
+          <p class="hero-score-verdict">Calidad alta, con debilidades puntuales en cifrado por defecto e interoperabilidad.</p>
+        </div>
+        <div id="radar-chart" aria-hidden="false"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== METODOLOGÍA ============================== -->
+  <section id="metodologia">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="section-index">01 — Marco de trabajo</span>
+          <h2>Cómo está construido el modelo de McCall</h2>
+        </div>
+        <p class="lede">Propuesto por Jim McCall en 1977, el modelo traduce atributos abstractos de calidad en factores medibles. Cada factor se evalúa a partir de criterios técnicos concretos, no de percepción subjetiva.</p>
+      </div>
+
+      <div class="method-grid">
+        <div class="method-card op-tone">
+          <span class="cat-code">OP · Operación del producto</span>
+          <h3>¿Funciona como se espera?</h3>
+          <p>Mide el comportamiento de la app mientras el usuario la está usando activamente.</p>
+          <ul>
+            <li><span>Corrección</span><span class="n">COR</span></li>
+            <li><span>Confiabilidad</span><span class="n">CONF</span></li>
+            <li><span>Eficiencia</span><span class="n">EFIC</span></li>
+            <li><span>Integridad</span><span class="n">INTG</span></li>
+            <li><span>Usabilidad</span><span class="n">USAB</span></li>
+          </ul>
+        </div>
+
+        <div class="method-card rev-tone">
+          <span class="cat-code">REV · Revisión del producto</span>
+          <h3>¿Se puede corregir y adaptar?</h3>
+          <p>Mide qué tan preparado está el producto para cambiar sin degradarse.</p>
+          <ul>
+            <li><span>Facilidad de mantenimiento</span><span class="n">MANT</span></li>
+            <li><span>Flexibilidad</span><span class="n">FLEX</span></li>
+            <li><span>Facilidad de prueba</span><span class="n">PRUE</span></li>
+          </ul>
+        </div>
+
+        <div class="method-card tra-tone">
+          <span class="cat-code">TRA · Transición del producto</span>
+          <h3>¿Sobrevive fuera de su entorno?</h3>
+          <p>Mide la capacidad de moverse entre plataformas, equipos y otros sistemas.</p>
+          <ul>
+            <li><span>Portabilidad</span><span class="n">PORT</span></li>
+            <li><span>Reusabilidad</span><span class="n">REUS</span></li>
+            <li><span>Interoperabilidad</span><span class="n">INTER</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="method-note">Cada factor se puntuó de 0 a 10 a partir de sus criterios asociados (mostrados como etiquetas junto a cada factor más abajo), contrastando el comportamiento observado de Telegram con la especificación funcional que la propia plataforma publica.</p>
+    </div>
+  </section>
+
+  <!-- ============================== OPERACIÓN ============================== -->
+  <section id="operacion">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="section-index">02 — Categoría 1</span>
+          <h2>Operación del producto</h2>
+        </div>
+        <p class="lede">Los cinco factores que determinan si Telegram cumple su función mientras se está usando: enviar, recibir, sincronizar y proteger información en tiempo real.</p>
+      </div>
+      <div data-factor-list="operacion"></div>
+    </div>
+  </section>
+
+  <!-- ============================== REVISIÓN ============================== -->
+  <section id="revision">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="section-index">03 — Categoría 2</span>
+          <h2>Revisión del producto</h2>
+        </div>
+        <p class="lede">Qué tan preparada está la base del producto —y su ecosistema de extensiones— para ser corregida, ampliada y verificada con el tiempo.</p>
+      </div>
+      <div data-factor-list="revision"></div>
+    </div>
+  </section>
+
+  <!-- ============================== TRANSICIÓN ============================== -->
+  <section id="transicion">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="section-index">04 — Categoría 3</span>
+          <h2>Transición del producto</h2>
+        </div>
+        <p class="lede">Cómo se comporta Telegram al salir de un solo dispositivo o sistema: entre plataformas, entre desarrolladores externos y entre otros servicios.</p>
+      </div>
+      <div data-factor-list="transicion"></div>
+    </div>
+  </section>
+
+  <!-- ============================== RESUMEN ============================== -->
+  <section id="resumen">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="section-index">05 — Panorama general</span>
+          <h2>Los 11 factores, de mayor a menor puntuación</h2>
+        </div>
+        <p class="lede">La portabilidad y la usabilidad lideran la evaluación; la interoperabilidad y la integridad marcan el techo de mejora más claro.</p>
+      </div>
+
+      <div class="summary-wrap">
+        <div class="compare-list" id="compare-list"></div>
+        <aside class="summary-side">
+          <h3>Promedio por categoría</h3>
+          <div id="legend"></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== CONCLUSIONES ============================== -->
+  <section id="conclusiones">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="section-index">06 — Lectura final</span>
+          <h2>Conclusiones del estudio</h2>
+        </div>
+        <p class="lede">Con 8.4/10 de promedio general, Telegram queda clasificada como una aplicación de <strong>calidad alta</strong> bajo el modelo de McCall, con dos frentes concretos de mejora.</p>
+      </div>
+
+      <div class="findings-grid">
+        <article class="finding-card pos">
+          <span class="k">Fortaleza principal</span>
+          <h4>Portabilidad y flexibilidad</h4>
+          <p>La continuidad total entre dispositivos y la apertura a bots y Mini Apps son la razón estructural del puntaje alto: el producto fue diseñado desde el protocolo para moverse entre contextos.</p>
+        </article>
+        <article class="finding-card neu">
+          <span class="k">Punto de equilibrio</span>
+          <h4>Mantenibilidad observable</h4>
+          <p>El ritmo de lanzamientos sostenido sugiere buena salud interna del código, pero al no ser software libre esta puntuación se apoya en indicios externos, no en revisión directa del código fuente.</p>
+        </article>
+        <article class="finding-card neg">
+          <span class="k">Oportunidad de mejora</span>
+          <h4>Integridad e interoperabilidad</h4>
+          <p>Que el cifrado de extremo a extremo no sea el modo por defecto, sumado a un ecosistema que no habla protocolos abiertos como XMPP o Matrix, son los dos factores que más bajan el promedio general.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-wrap">
+    <span class="tag">Informe académico · Modelo de calidad de McCall aplicado a Telegram · <span id="year"></span></span>
+    <a class="repo-link" href="https://github.com/" target="_blank" rel="noopener">Ver repositorio en GitHub</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
