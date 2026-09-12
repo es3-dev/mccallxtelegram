@@ -564,6 +564,55 @@ section{
   color: var(--ink);
 }
 
+/* ---------------------------------- Total ---------------------------------- */
+
+.total-grid{
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  background: var(--line);
+  gap: 1px;
+}
+.total-primary,
+.total-metric{
+  padding: 30px;
+  background: var(--bg-elevated);
+}
+.total-primary{
+  background: var(--bg-elevated-2);
+}
+.total-value,
+.total-metric-value{
+  font-family: var(--font-mono);
+  line-height: 1;
+  color: var(--op);
+}
+.total-value{ font-size: 50px; }
+.total-max{
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--ink-faint);
+}
+.total-primary p,
+.total-metric span:last-child{
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+.total-metric{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.total-metric-value{
+  font-size: 30px;
+  color: var(--ink);
+}
+.total-metric strong{ color: var(--ink); }
+
 /* ---------------------------------- Conclusiones ---------------------------------- */
 
 .findings-grid{
@@ -630,6 +679,7 @@ footer a.repo-link:hover{ border-color: var(--op); color: var(--ink); }
   .method-grid{ grid-template-columns: 1fr; }
   .summary-wrap{ grid-template-columns: 1fr; }
   .summary-side{ position: static; }
+  .total-grid{ grid-template-columns: 1fr; }
   .findings-grid{ grid-template-columns: 1fr; }
 }
 

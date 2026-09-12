@@ -128,9 +128,10 @@ const FACTORS = [
   },
 ];
 
-const overallScore = (
-  FACTORS.reduce((sum, f) => sum + f.score, 0) / FACTORS.length
-).toFixed(1);
+const totalScore = FACTORS.reduce((sum, f) => sum + f.score, 0);
+const maximumScore = FACTORS.length * 10;
+const overallScore = (totalScore / FACTORS.length).toFixed(1);
+const scorePercentage = ((totalScore / maximumScore) * 100).toFixed(1);
 
 function categoryAverage(catId) {
   const items = FACTORS.filter((f) => f.category === catId);
@@ -205,8 +206,12 @@ function buildRadar() {
 
 function fillHero() {
   document.getElementById("overall-score").textContent = overallScore;
+  document.getElementById("overall-score-total").textContent = overallScore;
   document.getElementById("factor-count").textContent = FACTORS.length;
   document.getElementById("category-count").textContent = Object.keys(CATEGORIES).length;
+  document.getElementById("total-score").textContent = totalScore.toFixed(1);
+  document.getElementById("maximum-score").textContent = maximumScore;
+  document.getElementById("score-percentage").textContent = `${scorePercentage}%`;
 }
 
 /* ---------------------------- Metodología: conteo por categoría ---------------------------- */
